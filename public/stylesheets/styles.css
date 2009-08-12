@@ -1,0 +1,28 @@
+h1 { font-size:1.5em; }
+h2 { font-size:1.4em; }
+h3 { font-size:1.3em; }
+h4 { font-size:1.2em; }
+h5 { font-size:1.1em; }
+#container {
+	width:900px;
+	margin:0 auto;
+}
+#user-bar-greeting, #user-bar-action {
+	float:right;
+}
+#user-bar-greeting {
+	margin-left: 6px;
+}
+#content {
+	margin:8px 0;
+}
+#side_bar {
+	width:200px;
+	float:left;
+}
+#main {
+	margin-left:200px;
+}
+#footer {
+	clear:both;
+}
