@@ -1,0 +1,24 @@
+<p>
+  <b>Title:</b>
+  <%=h @project.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @project.description %>
+</p>
+
+<%= link_to 'Edit', edit_project_path(@project) %><br />
+
+<%= link_to 'New Experiment', new_project_experiment_path(@project) %>
+
+<% if @project.experiments.blank? %>
+  <p>Project has no experiments.</p>
+<% else %>
+  <h5>Current Experiments</h5>
+  <ul>
+    <% @project.experiments.each do |experiment| %>
+      <li><%= link_to experiment.title, [@project, experiment] %></li>
+    <% end %>
+  </ul>
+<% end %>

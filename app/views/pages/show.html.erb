@@ -1,0 +1,12 @@
+<h1>Activity for <%= @page.page_date %></h1>
+<ul>
+<% @page.page_items.each do |item| %>
+  <li>
+    <h3>
+      Created <%= item.resource.class.to_s.downcase %>
+      <%= item.resource.title if item.resource.title %>
+    </h3>
+    <p><%= item_text(item.resource) %></p>
+  </li>
+<% end %>
+</ul>

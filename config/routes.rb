@@ -1,4 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
+
+  map.page '/pages/:date', :controller => 'pages', :action => 'show'
+  map.resources :notes
+
+  map.root :controller => 'welcome'
+
+  map.resources :projects do |projects|
+    projects.resources :experiments, :has_many => :notes
+  end
+
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'users', :action => 'create'

@@ -1,0 +1,37 @@
+<p>
+  <b>Project:</b>
+  <%=h @experiment.project.title %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%=h @experiment.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @experiment.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_project_experiment_path(@project, @experiment) %> |
+<%= link_to 'Back', @project %>
+
+<div>
+  <%= link_to "New Note", new_project_experiment_note_path(@project, @experiment) %>
+  <h4>Notes</h4>
+  <ul>
+    <% @experiment.notes.each do |note| %>
+      <li>
+        
+          <h5>
+            <%= note.created_at.to_s(:short) %>
+            <% if note.title? %>
+               - <%= note.title %>
+            <% end %>
+          </h5>
+        <%= note.body %>
+      </li>
+    <% end %>
+  </ul>
+</div>

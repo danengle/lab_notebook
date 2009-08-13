@@ -1,0 +1,17 @@
+<% if logged_in? %>
+  <h1>Today's Activity</h1>
+  <ul>
+  <% current_user.todays_page.page_items.each do |item| %>
+    <li>
+      <h3>
+        Created <%= item.resource.class.to_s.downcase %>
+        <%= item.resource.title if item.resource.title %>
+      </h3>
+      <p><%= item_text(item.resource) %></p>
+    </li>
+  <% end %>
+  </ul>
+<% else %>
+  <h1>Welcome#index</h1>
+  <p>Find me in app/views/welcome/index.html.erb</p>
+<% end %>

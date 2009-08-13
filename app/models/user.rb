@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
   include Authentication::ByCookieToken
   include Authorization::AasmRoles
 
+  has_and_belongs_to_many :projects
+  has_many :pages, :order => 'page_date DESC'
+  
   validates_presence_of     :login
   validates_length_of       :login,    :within => 3..40
   validates_uniqueness_of   :login
@@ -48,6 +51,14 @@ class User < ActiveRecord::Base
     write_attribute :email, (value ? value.downcase : nil)
   end
 
+  def todays_page
+    p = self.pages.find_by_page_date(Date.today.to_s(:db))
+    if p.blank?
+      p = self.pages.create(:page_date => Date.today.to_s(:db))
+    end
+    p
+  end
+  
   protected
     
     def make_activation_code
