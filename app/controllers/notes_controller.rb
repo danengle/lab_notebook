@@ -1,5 +1,6 @@
 class NotesController < ApplicationController
 
+  before_filter :login_required
   before_filter :get_project_and_experiment
   # GET /notes
   # GET /notes.xml
@@ -43,7 +44,6 @@ class NotesController < ApplicationController
   # POST /notes.xml
   def create
     @note = @experiment.notes.new(params[:note])
-    logger.info { "\nparams[:note].class = #{params[:note].class}\n\n" }
     respond_to do |format|
       if current_user.save_object(@note)
         

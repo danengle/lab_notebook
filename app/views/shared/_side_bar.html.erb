@@ -1,25 +1,33 @@
-<div id="side_bar">
-  <ul>
-    <li><%= link_to "New Project", new_project_path %></li>
-    <li>
-      <h5>My Projects</h5>
-      <ul>
-      <% if current_user.projects.blank? %>
-        <li>No current Projects</li>
-      <% else %>
-        <% current_user.projects.each do |project| %>
-          <li><%= link_to project.title, project_path(project) %></li>
-        <% end %>
-      <% end %>
-      </ul>
-    </li>
-    <li>
-      <h5>My Pages</h5>
-      <ul>
-        <% current_user.pages.each do |page| %>
+<div id="sidebar">
+	<ul>
+		<li id="search">
+			<h2><b class="text1">Search</b></h2>
+			<form method="get" action="">
+				<fieldset>
+				<input type="text" id="s" name="s" value="" />
+				<input type="submit" id="x" value="Search" />
+				</fieldset>
+			</form>
+		</li>
+		<li>
+			<h2><strong>My</strong> Projects</h2>
+			<ul>
+			  <% if current_user.projects.blank? %>
+			    <li>No Current Projects</li>
+			  <% else %>
+			    <% current_user.projects.each do |project| %>
+			      <li><%= link_to project.title, project %></li>
+			    <% end %>
+				<% end %>
+			</ul>
+		</li>
+		<li>
+			<h2><b>My</b> Pages</h2>
+			<ul>
+			  <% current_user.pages.each do |page| %>
           <li><%= link_to page.page_date, page_path(page.page_date) %></li>
         <% end %>
-      </ul>
-    </li>
-  </ul>
+			</ul>
+		</li>
+	</ul>
 </div>

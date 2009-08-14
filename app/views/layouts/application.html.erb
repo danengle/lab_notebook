@@ -5,22 +5,23 @@
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title><%= controller.controller_name %>: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag "reset", "styles" %>
-  <%= javascript_include_tag "jquery-1.3.2.js", "application" %>
+  <%= stylesheet_link_tag "jquery.wysiwyg.css", "default", "styles" %>
+  <%= javascript_include_tag "jquery-1.3.2.js", "jquery.wysiwyg.js", "application" %>
 </head>
 <body>
-  <div id="container">
-    <%= render :partial => 'shared/header' %>
+  <%= render :partial => 'shared/header' %>
+  <div id="page">
     <div id="content">
-      <% if logged_in? %>
-        <%= render :partial => 'shared/side_bar' %>
+      <% flash.each do |key, value| %>
+        <p class="flash_message <%= key %>"><%= value %></p>
       <% end %>
-      <div id="main">
-        <p style="color: green"><%= flash[:notice] %></p>
-        <%= yield  %>
-      </div>
+      <%= yield  %>
     </div>
-    <%= render :partial => 'shared/footer' %>
+    <% if logged_in? %>
+      <%= render :partial => 'shared/side_bar' %>
+    <% end %>
+    <div style="clear:both;"></div>
   </div>
+  <%= render :partial => 'shared/footer' %>
 </body>
 </html>

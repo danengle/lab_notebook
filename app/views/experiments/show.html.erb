@@ -1,37 +1,37 @@
-<p>
-  <b>Project:</b>
-  <%=h @experiment.project.title %>
-</p>
-
-<p>
-  <b>Title:</b>
-  <%=h @experiment.title %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%=h @experiment.description %>
-</p>
-
-
-<%= link_to 'Edit', edit_project_experiment_path(@project, @experiment) %> |
-<%= link_to 'Back', @project %>
-
-<div>
-  <%= link_to "New Note", new_project_experiment_note_path(@project, @experiment) %>
-  <h4>Notes</h4>
+<div class="post">
+  <h2 class="title"><b>Experiment:</b> <%= @experiment.title %></h2>
+  <div class="entry">
+    <p><%=h @experiment.description %></p>
+  </div>
+  <div class="meta">
+    <p class="links">
+      <%= link_to 'Edit Experiment', edit_project_path(@experiment), :class => 'more' %>
+    </p>
+  </div>
+</div>
+<div class="post">
+  <h2 class="title">Notes</h2>
   <ul>
     <% @experiment.notes.each do |note| %>
       <li>
-        
-          <h5>
-            <%= note.created_at.to_s(:short) %>
-            <% if note.title? %>
-               - <%= note.title %>
-            <% end %>
-          </h5>
+        <h5>
+          <%= note.created_at.to_s(:short) %>
+          <% if note.title? %>
+             - <%= note.title %>
+          <% end %>
+        </h5>
         <%= note.body %>
       </li>
     <% end %>
   </ul>
+</div>
+<div class="post">
+  <h2 class="title">New Note</h2>
+  <% form_for([@project, @experiment,@note]) do |f| %>
+    <%= f.error_messages %>
+    <%= render :partial => 'notes/form', :locals => { :f => f } %>
+    <p>
+      <%= f.submit 'Create' %>
+    </p>
+  <% end %>
 </div>

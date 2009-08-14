@@ -1,5 +1,6 @@
 class ExperimentsController < ApplicationController
   
+  before_filter :login_required
   before_filter :get_project
   # GET /experiments
   # GET /experiments.xml
@@ -15,8 +16,8 @@ class ExperimentsController < ApplicationController
   # GET /experiments/1
   # GET /experiments/1.xml
   def show
-    @experiment = Experiment.find(params[:id])
-
+    @experiment = @project.experiments.find(params[:id])
+    @note = @experiment.notes.new
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @experiment }
