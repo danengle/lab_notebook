@@ -43,12 +43,10 @@ class NotesController < ApplicationController
   # POST /notes.xml
   def create
     @note = @experiment.notes.new(params[:note])
-    
+    logger.info { "\nparams[:note].class = #{params[:note].class}\n\n" }
     respond_to do |format|
-      if @note.save
-        @page_item = current_user.todays_page.page_items.new
-        @page_item.resource = @note
-        @page_item.save
+      if current_user.save_object(@note)
+        
         flash[:notice] = 'Note was successfully created.'
         format.html { redirect_to([@project, @experiment]) }
         format.xml  { render :xml => @note, :status => :created, :location => @note }

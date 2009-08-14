@@ -59,6 +59,11 @@ class User < ActiveRecord::Base
     p
   end
   
+  def save_object(object)
+    object.user = self if object.respond_to?(:user=)
+    object.save
+  end
+  
   protected
     
     def make_activation_code

@@ -3,4 +3,6 @@ class Project < ActiveRecord::Base
   has_many :experiments, :dependent => :destroy
 
   validates_presence_of :title, :description
+  
+  attr_accessor :user
 end

@@ -42,13 +42,9 @@ class ExperimentsController < ApplicationController
   # POST /experiments
   # POST /experiments.xml
   def create
-    @experiment = @project.experiments.new(params[:experiment])
-    @experiment.user_id = current_user.id
+    @experiment = @project.experiments.new(params[:experiment].merge({ :user_id => current_user.id }))
     respond_to do |format|
-      if @experiment.save
-        @page_item = current_user.todays_page.page_items.new
-        @page_item.resource = @experiment
-        @page_item.save
+      if current_user.save_object(@experiment)
         flash[:notice] = 'Experiment was successfully created.'
         format.html { redirect_to([@project,@experiment]) }
         format.xml  { render :xml => @experiment, :status => :created, :location => @experiment }

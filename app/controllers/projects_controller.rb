@@ -43,11 +43,8 @@ class ProjectsController < ApplicationController
     @project = Project.new(params[:project])
 
     respond_to do |format|
-      if @project.save
+      if current_user.save_object(@project)
         current_user.projects << @project
-        @page_item = current_user.todays_page.page_items.new
-        @page_item.resource = @project
-        @page_item.save
         flash[:notice] = 'Project was successfully created.'
         format.html { redirect_to(@project) }
         format.xml  { render :xml => @project, :status => :created, :location => @project }
