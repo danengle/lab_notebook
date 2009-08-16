@@ -1,0 +1,9 @@
+  <% @projects.each do |project| -%>
+    Project: <%= project.title %>
+  <% end -%>
+  <% @experiments.each do |experiment| -%>
+    Experiment: <%= experiment.title %>
+  <% end %>
+  <% @notes.each do |note| -%>
+    Note: <%= note.title.blank? ? truncate(note.body, :length => 14, :omission => "") : note.title %>
+  <% end -%>

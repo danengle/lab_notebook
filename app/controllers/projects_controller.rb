@@ -42,7 +42,7 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.xml
   def create
-    @project = Project.new(params[:project])
+    @project = Project.new(params[:project].merge({ :owner_id => current_user.id }))
 
     respond_to do |format|
       if current_user.save_object(@project)
@@ -84,5 +84,12 @@ class ProjectsController < ApplicationController
       format.html { redirect_to(projects_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  def add_me
+    @project = Project.find(params[:id])
+    current_user.projects << @project unless current_user.projects.include?(@project)
+    flash[:notice] = "You have been added to the project"
+    redirect_to @project
   end
 end

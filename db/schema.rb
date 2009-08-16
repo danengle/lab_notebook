@@ -9,7 +9,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090813071442) do
+ActiveRecord::Schema.define(:version => 20090815200351) do
+
+  create_table "attachments", :force => true do |t|
+    t.integer  "resource_id"
+    t.string   "resource_type"
+    t.string   "filename"
+    t.string   "content_type"
+    t.string   "thumbnail"
+    t.integer  "size"
+    t.integer  "parent_id"
+    t.integer  "height"
+    t.integer  "width"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "experiments", :force => true do |t|
     t.integer  "project_id"
@@ -42,10 +56,11 @@ ActiveRecord::Schema.define(:version => 20090813071442) do
   end
 
   create_table "projects", :force => true do |t|
-    t.string   "name"
+    t.string   "title"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "owner_id"
   end
 
   create_table "projects_users", :id => false, :force => true do |t|

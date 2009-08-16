@@ -1,4 +1,5 @@
-<h1>Editing experiment</h1>
+<div class="post">
+<h2>Editing experiment for <%= @project.title %></h2>
 
 <% form_for([@project,@experiment]) do |f| %>
   <%= f.error_messages %>
@@ -10,3 +11,4 @@
 
 <%= link_to 'Show', [@project,@experiment] %> |
 <%= link_to 'Back', @project %>
+</div>

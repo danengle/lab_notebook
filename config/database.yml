@@ -18,7 +18,7 @@ development:
   adapter: mysql
   encoding: utf8
   reconnect: false
-  database: lab2_development
+  database: lab_notebook_development
   pool: 5
   username: root
   password:

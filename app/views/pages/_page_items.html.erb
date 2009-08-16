@@ -1,0 +1,24 @@
+<% @page.page_items.each do |item| %>
+  <div class="post">
+    <h2 class="title">
+      <b>Created <%= item.resource.class.to_s.downcase %>:</b>
+      <%= item.resource.title if item.resource.respond_to?(:title) && item.resource.title %>
+    </h2>
+    <div class="entry">
+      <% if item.resource.class.to_s == "Attachment" %>
+        <% if item.resource.image? %>
+          <%= image_tag item.resource.public_filename(:thumbnail) %>
+        <% else %>
+          <%= link_to item.resource.filename, item.resource.public_filename %>
+        <% end%>
+      <% else %>
+        <p><%= item_text(item.resource) %></p>
+      <% end %>
+    </div>
+    <div class="meta">
+      <p class="links">
+        <%= item_link(item.resource) %>
+      </p>
+    </div>
+  </div>
+<% end %>

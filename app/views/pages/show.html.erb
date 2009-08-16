@@ -1,12 +1,5 @@
-<h1>Activity for <%= @page.page_date %></h1>
-<ul>
-<% @page.page_items.each do |item| %>
-  <li>
-    <h3>
-      Created <%= item.resource.class.to_s.downcase %>
-      <%= item.resource.title if item.resource.title %>
-    </h3>
-    <p><%= item_text(item.resource) %></p>
-  </li>
+<h2 class="activity">Activity for <%= @page.page_date %></h2>
+<% if current_user.projects.blank? %>
+  <p>You have no activity because you haven't created any projects yet.  Get started by <%= link_to "creating a new project", new_project_path %>.</p>
 <% end %>
-</ul>
+<%= render :partial => 'page_items' %>

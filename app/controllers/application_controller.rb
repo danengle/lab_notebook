@@ -9,13 +9,4 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
   include AuthenticatedSystem
   
-  # before_filter :get_page
-  
-  private 
-  
-  def get_page
-    if logged_in?
-      @todays_page ||= current_user.pages.create!
-    end
-  end
 end

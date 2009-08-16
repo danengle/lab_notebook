@@ -1,11 +1,11 @@
 <div class="post">
   <h2 class="title"><b>Experiment:</b> <%= @experiment.title %></h2>
   <div class="entry">
-    <p><%=h @experiment.description %></p>
+    <p><%= @experiment.description %></p>
   </div>
   <div class="meta">
     <p class="links">
-      <%= link_to 'Edit Experiment', edit_project_path(@experiment), :class => 'more' %>
+      <%= link_to 'Edit Experiment', edit_project_experiment_path(@project,@experiment), :class => 'more' %>
     </p>
   </div>
 </div>
@@ -13,14 +13,33 @@
   <h2 class="title">Notes</h2>
   <ul>
     <% @experiment.notes.each do |note| %>
-      <li>
+      <li id="note_<%= note.id %>">
         <h5>
-          <%= note.created_at.to_s(:short) %>
+          <%= note.created_at.strftime("%B %e, %Y") %>
           <% if note.title? %>
              - <%= note.title %>
           <% end %>
         </h5>
         <%= note.body %>
+        <div class="meta">
+          <p class="links">
+            <%= link_to "View activity for this day", { :controller => 'pages', :action => 'show', :date => note.page_item.page.page_date }, :class => 'comments' %>
+          </p>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+<div class="post">
+  <h2 class="title">Attachments</h2>
+  <ul>
+    <% @experiment.attachments.each do |attachment| %>
+      <li>
+        <% if attachment.image? %>
+          <%= image_tag attachment.public_filename(:thumbnail) %>
+        <% else %>
+          <%= link_to attachment.filename, attachment.public_filename %>
+        <% end%>
       </li>
     <% end %>
   </ul>
@@ -32,6 +51,16 @@
     <%= render :partial => 'notes/form', :locals => { :f => f } %>
     <p>
       <%= f.submit 'Create' %>
+    </p>
+  <% end %>
+</div>
+<div class="post">
+  <h2 class="title">Add Attachment</h2>
+  <% form_for([@project,@experiment,@attachment], :html => { :multipart => true }) do |f| %>
+    <%= f.error_messages %>
+    <%= f.file_field :uploaded_data %>
+    <p>
+      <%= f.submit 'Save' %>
     </p>
   <% end %>
 </div>

@@ -1,12 +1,16 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :attachments
 
+  map.notebook '/pages/notebook.pdf', :controller => 'pages', :action => 'notebook'
   map.page '/pages/:date', :controller => 'pages', :action => 'show'
   map.resources :notes
 
+  map.resources :pages
+  
   map.root :controller => 'welcome'
 
-  map.resources :projects do |projects|
-    projects.resources :experiments, :has_many => :notes
+  map.resources :projects, :member => { :add_me => :get } do |projects|
+    projects.resources :experiments, :has_many => [ :notes, :attachments ]
   end
 
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'

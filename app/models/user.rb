@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :projects
   has_many :pages, :order => 'page_date DESC'
   
-  validates_presence_of     :login
+  validates_presence_of     :login, :name
   validates_length_of       :login,    :within => 3..40
   validates_uniqueness_of   :login
   validates_format_of       :login,    :with => Authentication.login_regex, :message => Authentication.bad_login_message
@@ -57,6 +57,10 @@ class User < ActiveRecord::Base
       p = self.pages.create(:page_date => Date.today.to_s(:db))
     end
     p
+  end
+  
+  def project_owner?(project)
+    project.owner_id == self.id
   end
   
   def save_object(object)

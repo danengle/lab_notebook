@@ -1,23 +1,97 @@
 h5 {
 	margin:6px 0;
 }
+.wide {
+	width:100%;
+}
 form p {
 	margin-bottom:10px;
 }
 .post form {
 	padding:0 25px;
 }
-#note_title {
+#project_title, #note_title {
 	width:100%;
 }
 textarea {
 	width:99%;
 	height:100px;
 }
+.required {
+	font-size:.8em;
+}
+
+/* welcome page */
+.welcome_page fieldset {
+	padding:8px;
+	border:1px solid #005997;
+}
+.welcome_page legend {
+	font-size:1.2em;
+}
+#password_span {
+	margin:0 6px 0 12px;
+}
+#signup_form legend, #login_form legend {
+	display:block;
+}
+
+#signup_form {
+	margin:15px 0;
+}
+#signup_form fieldset {
+	margin-bottom:6px;
+}
+#login_form {
+	
+}
+
+/* experiments */
+.post ul li h5 {
+	font-size:1.3em;
+	margin-bottom:0;
+}
+/* flash messages */
 .flash_message { padding:2px 8px;}
 .warning {border:2px solid #F2DD8C; background-color:#FFF5CC;}
 .warning a {color:#df0000;}
-.msg.warning a:hover, .msg.warning a:active, .msg.warning a:focus {color:#303030;}
+.warning a:hover, .warning a:active, .warning a:focus {color:#303030;}
 .info {border:2px solid #B8E2FB; background-color:#E8F6FF;}
 .notice {border:2px solid #BBDF8D; background-color:#EAF7D9;}
 .error {border:2px solid #FFAEAE; background-color:#FEEBEB;}
+/* error styles copied from scaffold.css */
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#errorExplanation {
+  width: 100%;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}

@@ -1,0 +1,35 @@
+<div class="post">
+  <h2 class="title">Search Results for <%= @search %></h2>
+
+<% if @projects.blank? %>
+  <h3>No Matching Projects</h3>
+<% else %>
+  <h2>Projects (<%= @projects.size %>)</h2>
+  <ul>
+  <% @projects.each do |project| %>
+    <li><%= link_to project.title, project %></li>
+  <% end %>
+  </ul>
+<% end %>
+<hr />
+<% if @experiments.blank? %>
+  <h3>No Matching Experiments</h3>
+<% else %>
+  <h2>Experiments (<%= @experiments.size %>)</h2>
+  <ul>
+  <% @experiments.each do |experiment| %>
+    <li><%= link_to experiment.title, [experiment.project, experiment] %></li>
+  <% end %>
+  </ul>
+<% end %>
+<hr />
+<% if @notes.blank? %>
+  <h3>No Matching Notes</h3>
+<% else %>
+  <h2>Notes (<%= @notes.size %>)</h2>
+  <ul>
+  <% @notes.each do |note| %>
+    <li><%= link_to note.title.blank? ? truncate(note.body, :length => 50) : note.title, project_experiment_path(note.experiment.project, note.experiment) + "#note_#{note.id}" %></li>
+  <% end %>
+<% end %>
+</div>
