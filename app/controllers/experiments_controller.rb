@@ -1,12 +1,13 @@
 class ExperimentsController < ApplicationController
   
   before_filter :login_required
-  before_filter :get_project
-
+  before_filter :get_and_verify_project_and_experiment, :only => 'show'
+  before_filter :get_project, :except => 'show'
+  
   # GET /experiments/1
   # GET /experiments/1.xml
   def show
-    @experiment = @project.experiments.find(params[:id])
+    # already have @project and @experiment because of before_filter
     @note = @experiment.notes.new
     @attachment = @experiment.attachments.new
     
@@ -29,7 +30,7 @@ class ExperimentsController < ApplicationController
 
   # GET /experiments/1/edit
   def edit
-    @experiment = Experiment.find(params[:id])
+    @experiment = current_user.experiments.find(params[:id])
   end
 
   # POST /experiments
@@ -82,4 +83,5 @@ class ExperimentsController < ApplicationController
   def get_project
     @project = current_user.projects.find(params[:project_id])
   end
+  
 end

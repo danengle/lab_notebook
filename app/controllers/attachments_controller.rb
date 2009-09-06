@@ -1,6 +1,6 @@
 class AttachmentsController < ApplicationController
   
-  before_filter :get_project_and_experiment
+  before_filter :get_and_verify_project_and_experiment
 
   # POST /attachments
   # POST /attachments.xml
@@ -23,12 +23,12 @@ class AttachmentsController < ApplicationController
   # PUT /attachments/1
   # PUT /attachments/1.xml
   def update
-    @attachment = Attachment.find(params[:id])
+    @attachment = @experiment.attachments.find(params[:id])
 
     respond_to do |format|
       if @attachment.update_attributes(params[:attachment])
         flash[:notice] = 'Attachment was successfully updated.'
-        format.html { redirect_to(@attachment) }
+        format.html { redirect_to([@project,@experiment]) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -40,19 +40,13 @@ class AttachmentsController < ApplicationController
   # DELETE /attachments/1
   # DELETE /attachments/1.xml
   def destroy
-    @attachment = Attachment.find(params[:id])
+    @attachment = @experiment.attachments.find(params[:id])
     @attachment.destroy
 
     respond_to do |format|
-      format.html { redirect_to(attachments_url) }
+      format.html { redirect_to([@project,@experiment]) }
       format.xml  { head :ok }
     end
   end
-  
-  private
-  
-  def get_project_and_experiment
-    @project = Project.find(params[:project_id])
-    @experiment = @project.experiments.find(params[:experiment_id]) if params[:experiment_id]
-  end
+
 end

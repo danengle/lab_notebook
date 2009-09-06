@@ -213,7 +213,6 @@ input, textarea, select {
 .post .meta {
 	margin: 0;
 	padding: 10px 0 30px 0;
-	background: url(/images/img04.jpg) repeat-x left 30%;
 }
 
 .post .meta p {
@@ -323,7 +322,6 @@ input, textarea, select {
 
 #x {
 	padding: 3px;
-	background: #ECECEC url(/images/img08.gif) repeat-x left bottom;
 	border: none;
 	text-transform: lowercase;
 	font-size: 11px;
@@ -334,7 +332,6 @@ input, textarea, select {
 
 .box1 {
 	padding: 20px;
-	background: url(/images/img05.gif) no-repeat;
 }
 
 .box2 {
@@ -343,7 +340,6 @@ input, textarea, select {
 
 .box2 h2 {
 	margin-bottom: 15px;
-	background: url(/images/img10.gif) repeat-x left bottom;
 	font-size: 16px;
 	color: #FFFFFF;
 }
@@ -404,7 +400,6 @@ html>body #footer {
 	display: block;
 	float: left;
 	padding: 1px 15px 1px 15px;
-	background: url(/images/img03.jpg) no-repeat right 50%;
 	text-decoration: none;
 	font-size: 11px;
 	color: #6D6D6D;
@@ -417,4 +412,3 @@ html>body #footer {
 #footer-menu .active a {
 	padding-left: 0;
 }
-

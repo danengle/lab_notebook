@@ -9,13 +9,5 @@ class Attachment < ActiveRecord::Base
   attr_accessor :user
   
   validates_as_attachment
-    
-  after_attachment_saved do |record|
-    logger.info { "\n\nrecord = #{record.inspect}\n\n" }
-  end
-  
-  # before_thumbnail_saved do |thumbnail|
-    # record = thumbnail.parent
-    
-  # end
+
 end

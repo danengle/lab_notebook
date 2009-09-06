@@ -37,6 +37,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit
   def edit
     @project = Project.find(params[:id])
+    not_allowed(@project, "You are not allowed to edit the project") unless current_user.project_owner?(@project)
   end
 
   # POST /projects
@@ -78,7 +79,11 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1.xml
   def destroy
     @project = Project.find(params[:id])
-    @project.destroy
+    if current_user.project_owner?(@project) && @project.users.size == 1
+      @project.destroy
+    else
+      not_allowed(@project, "You are not allowed to delete this project because you are not the owner or other researchers are currently assigned to it.")
+    end
 
     respond_to do |format|
       format.html { redirect_to(projects_url) }

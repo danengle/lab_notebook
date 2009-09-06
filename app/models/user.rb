@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :projects
   has_many :pages, :order => 'page_date DESC'
+  has_many :experiments
   
   validates_presence_of     :login, :name
   validates_length_of       :login,    :within => 3..40

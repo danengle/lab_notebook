@@ -11,6 +11,10 @@ class PagesController < ApplicationController
       @page = current_user.todays_page
     else
       @page = current_user.pages.find_by_page_date(params[:date])
+      if @page.nil?
+        flash[:error] = "That page does not exist."
+        redirect_to page_path(:date => 'today')
+      end
     end
   end
 
