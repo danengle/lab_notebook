@@ -1,6 +1,6 @@
 class Page < ActiveRecord::Base
   belongs_to :user
-  has_many :page_items, :order => "created_at ASC", :dependent => :destroy
+  has_many :page_items, :order => "created_at ASC", :dependent => :destroy, :include => :resource
   
   validates_presence_of :user_id, :page_date
   

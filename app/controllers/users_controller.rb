@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge]
   
   def index
-    @projects = Project.find(:all)
+    @projects = Project.find(:all, :include => [:users])
   end
 
   # render new.rhtml

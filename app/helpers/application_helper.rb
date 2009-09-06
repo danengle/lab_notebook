@@ -16,8 +16,9 @@ module ApplicationHelper
       link_to "View Project: #{item.title}", item, :class => 'more'
     when "Experiment"
       link_to "View Experiment: #{item.title}", [item.project, item], :class => 'comments'
-    else
+    when "Note"
       link_to "View Experiment: #{item.experiment.title}", [item.experiment.project, item.experiment], :class => 'comments'
+    else # Attachment
     end
     
   end

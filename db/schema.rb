@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090815200351) do
+ActiveRecord::Schema.define(:version => 20090906042129) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "resource_id"
@@ -25,6 +25,9 @@ ActiveRecord::Schema.define(:version => 20090815200351) do
     t.datetime "updated_at"
   end
 
+  add_index "attachments", ["parent_id"], :name => "index_attachments_on_parent_id"
+  add_index "attachments", ["resource_id"], :name => "index_attachments_on_resource_id"
+
   create_table "experiments", :force => true do |t|
     t.integer  "project_id"
     t.integer  "user_id"
@@ -34,6 +37,8 @@ ActiveRecord::Schema.define(:version => 20090815200351) do
     t.datetime "updated_at"
   end
 
+  add_index "experiments", ["user_id", "project_id"], :name => "index_experiments_on_user_id_and_project_id"
+
   create_table "notes", :force => true do |t|
     t.integer  "experiment_id"
     t.string   "title"
@@ -41,6 +46,8 @@ ActiveRecord::Schema.define(:version => 20090815200351) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "notes", ["experiment_id"], :name => "index_notes_on_experiment_id"
 
   create_table "page_items", :force => true do |t|
     t.integer  "page_id"
@@ -50,10 +57,17 @@ ActiveRecord::Schema.define(:version => 20090815200351) do
     t.datetime "updated_at"
   end
 
+  add_index "page_items", ["page_id", "created_at"], :name => "index_page_items_on_page_id_and_created_at"
+  add_index "page_items", ["page_id", "resource_id"], :name => "index_page_items_on_page_id_and_resource_id"
+  add_index "page_items", ["page_id"], :name => "index_page_items_on_page_id"
+  add_index "page_items", ["resource_id"], :name => "index_page_items_on_resource_id"
+
   create_table "pages", :force => true do |t|
     t.integer "user_id"
     t.date    "page_date"
   end
+
+  add_index "pages", ["user_id", "page_date"], :name => "index_pages_on_user_id_and_page_date", :unique => true
 
   create_table "projects", :force => true do |t|
     t.string   "title"
@@ -63,10 +77,15 @@ ActiveRecord::Schema.define(:version => 20090815200351) do
     t.integer  "owner_id"
   end
 
+  add_index "projects", ["id"], :name => "index_projects_on_id"
+
   create_table "projects_users", :id => false, :force => true do |t|
     t.integer "project_id"
     t.integer "user_id"
   end
+
+  add_index "projects_users", ["project_id"], :name => "index_projects_users_on_project_id"
+  add_index "projects_users", ["user_id", "project_id"], :name => "index_projects_users_on_user_id_and_project_id", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "login",                     :limit => 40
@@ -84,6 +103,7 @@ ActiveRecord::Schema.define(:version => 20090815200351) do
     t.datetime "deleted_at"
   end
 
+  add_index "users", ["id"], :name => "index_users_on_id"
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
 
 end

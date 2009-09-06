@@ -61,12 +61,16 @@ class User < ActiveRecord::Base
   end
   
   def project_owner?(project)
-    project.owner_id == self.id
+    self.id == project.owner_id
   end
   
   def save_object(object)
     object.user = self if object.respond_to?(:user=)
     object.save
+  end
+  
+  def project_experiments(project)
+    @project_experiments ||= self.experiments.find(:all, :conditions => {:project_id => project.id})
   end
   
   protected

@@ -19,11 +19,12 @@
 <div class="post">
   <h2 class="title">Current Experiments</h2>
   <% if @project.users.include?(current_user) %>
-    <% if @project.experiments.of_user(current_user).blank? %>
+    
+    <% if current_user.project_experiments(@project).blank? %>
       <p>You have no experiments for this project. <%= link_to "Create an experiment now.", new_project_experiment_path(@project) %></p>
     <% else %>
       <ul>
-        <% @project.experiments.of_user(current_user).each do |experiment| %>
+        <% current_user.project_experiments(@project).each do |experiment| %>
           <li><%= link_to experiment.title, [@project, experiment] %></li>
         <% end %>
       </ul>

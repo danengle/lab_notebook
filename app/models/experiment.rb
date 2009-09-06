@@ -13,6 +13,4 @@ class Experiment < ActiveRecord::Base
   attr_accessor :user
   
   validates_presence_of :project_id, :user_id, :title, :description
-  
-  named_scope :of_user, lambda { |user| { :conditions => { :user_id => user.id }}}
 end
