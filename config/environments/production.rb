@@ -1,3 +1,4 @@
+ENV['GEM_PATH'] = '/home/danengle/.gems:/usr/lib/ruby/gems/1.8'
 # Settings specified here will take precedence over those in config/environment.rb
 
 # The production environment is meant for finished, "live" apps.
