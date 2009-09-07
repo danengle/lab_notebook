@@ -58,7 +58,6 @@ ActiveRecord::Schema.define(:version => 20090906042129) do
   end
 
   add_index "page_items", ["page_id", "created_at"], :name => "index_page_items_on_page_id_and_created_at"
-  add_index "page_items", ["page_id", "resource_id"], :name => "index_page_items_on_page_id_and_resource_id"
   add_index "page_items", ["page_id"], :name => "index_page_items_on_page_id"
   add_index "page_items", ["resource_id"], :name => "index_page_items_on_resource_id"
 
@@ -84,7 +83,6 @@ ActiveRecord::Schema.define(:version => 20090906042129) do
     t.integer "user_id"
   end
 
-  add_index "projects_users", ["project_id"], :name => "index_projects_users_on_project_id"
   add_index "projects_users", ["user_id", "project_id"], :name => "index_projects_users_on_user_id_and_project_id", :unique => true
 
   create_table "users", :force => true do |t|
