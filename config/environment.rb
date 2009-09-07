@@ -8,6 +8,7 @@ require File.join(File.dirname(__FILE__), 'boot')
 
 if ENV['RAILS_ENV'] == 'production'  # don't bother on dev
   ENV['GEM_PATH'] = '/home/danengle/.gems' + ':/usr/lib/ruby/gems/1.8'  # Need this or Passenger fails to start
+  require '/home/danengle/.gems/gems/prawn-0.5.0.1/lib/prawn.rb'
   # require '/home/danengle/.gems/gems/RedCloth-4.1.9/lib/redcloth.rb'  # Need this for EACH LOCAL gem you want to use, otherwise it uses the ones in /usr/lib
 end
 
