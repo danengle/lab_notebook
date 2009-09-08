@@ -4,7 +4,7 @@ class ActivityObserver < ActiveRecord::Observer
   def after_create(record)
     ::ApplicationController::logger.info("#{record.class}: #{record.id}")
     return if record.class.to_s == "Attachment" && !record.thumbnail.blank?
-    if true
+    if false
       page = record.user.pages.find_or_create_by_page_date(record.created_at.to_s(:db))
       page_item = page.page_items.new(:created_at => record.created_at)
     else

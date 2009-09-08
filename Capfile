@@ -7,6 +7,7 @@ task :after_deploy, :roles => [:app, :db, :web] do
 	run "sed 's/# ENV\\[/ENV\\[/g' #{deploy_to}/current/config/environment.rb > #{deploy_to}/current/config/environment.temp"
 	run "mv #{deploy_to}/current/config/environment.temp #{deploy_to}/current/config/environment.rb"
 	run "touch #{deploy_to}/current/tmp/restart.txt"
+	
 end
 
 desc "Link shared files"
@@ -16,5 +17,8 @@ task :before_symlink do
 	
 	run "rm -drf #{release_path}/config/database.yml"
 	run "ln -s #{shared_path}/database.yml #{release_path}/config/database.yml"
+	
+	run "rm -drf #{release_path}/config/environments/production.rb"
+	run "ln -s #{shared_path}/production.rb #{release_path}/config/environments/production.rb"
 end
 

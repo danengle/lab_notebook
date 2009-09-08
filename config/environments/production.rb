@@ -27,3 +27,13 @@ config.action_view.cache_template_loading            = true
 
 # Enable threaded mode
 # config.threadsafe!
+
+config.action_mailer.smtp_settings = {
+  :address => "mail.lab.danengle.us",
+  :port => 25,
+  :domain => "lab.danengle.us",
+  :authentication => :login,
+  :user_name => "no-reply@lab.danengle.us",
+  :password => "dCFdYu^S"
+}
+SITE_URL = "http://lab.danengle.us"

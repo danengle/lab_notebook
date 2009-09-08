@@ -45,3 +45,5 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
 end
+ExceptionNotifier.exception_recipients = %w{engle.68@gmail.com}
+ExceptionNotifier.sender_address = %("Application Error" <error@lab.danengle.us>)
