@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
   include AuthenticatedSystem
-  include ExeptionNotifiable
+  include ExceptionNotifiable
   
   def get_and_verify_project_and_experiment
     @project = Project.find(params[:project_id])

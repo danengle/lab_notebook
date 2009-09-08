@@ -22,3 +22,9 @@ task :before_symlink do
 	run "ln -s #{shared_path}/production.rb #{release_path}/config/environments/production.rb"
 end
 
+namespace :deploy do
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    #try_runner "#{current_path}/script/process/reaper"
+		run "touch #{release_path}/tmp/restart.txt"
+  end
+end
