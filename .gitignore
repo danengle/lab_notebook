@@ -3,4 +3,5 @@ config/database.yml
 public/attachments/*
 db/sphinx/*
 config/deploy.rb
+config/environments/production.rb
 
