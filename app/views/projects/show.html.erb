@@ -3,35 +3,34 @@
   <div class="entry">
     <p><%= @project.description %></p>
   </div>
-  <% if @project.users.include?(current_user) %>
+  <% if @project.users.include?(current_user) -%>
   <div class="meta">
     <p class="links">
-      <% if current_user.project_owner?(@project) %>
+      <% if current_user.project_owner?(@project) -%>
         <%= link_to 'Edit Project', edit_project_path(@project), :class => 'more' %>
-      <% end %>
-      <% if current_user.projects.include?(@project) %>
+      <% end -%>
+      <% if current_user.projects.include?(@project) -%>
         <%= link_to 'New Experiment', new_project_experiment_path(@project), :class => 'comments' %>
-      <% end %>
+      <% end -%>
     </p>
   </div>
-  <% end %>
+  <% end -%>
 </div>
 <div class="post">
   <h2 class="title">Current Experiments</h2>
-  <% if @project.users.include?(current_user) %>
-    
-    <% if current_user.project_experiments(@project).blank? %>
+  <% if @project.users.include?(current_user) -%>
+    <% if current_user.project_experiments(@project).blank? -%>
       <p>You have no experiments for this project. <%= link_to "Create an experiment now.", new_project_experiment_path(@project) %></p>
-    <% else %>
+    <% else -%>
       <ul>
-        <% current_user.project_experiments(@project).each do |experiment| %>
+        <% current_user.project_experiments(@project).each do |experiment| -%>
           <li><%= link_to experiment.title, [@project, experiment] %></li>
-        <% end %>
+        <% end -%>
       </ul>
-    <% end %>
-  <% else %>
+    <% end -%>
+  <% else -%>
     <p>You are not currently part of this project.  <%= link_to "Add yourself now to create experiments.", add_me_project_path(@project) %></p>
-  <% end %>
+  <% end -%>
 </div>
 
 

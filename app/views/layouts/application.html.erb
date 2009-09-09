@@ -12,14 +12,14 @@
   <%= render :partial => 'shared/header' %>
   <div id="page">
     <div id="content">
-      <% flash.each do |key, value| %>
+      <% flash.each do |key, value| -%>
         <p class="flash_message <%= key %>"><%= value %></p>
-      <% end %>
+      <% end -%>
       <%= yield  %>
     </div>
-    <% if logged_in? %>
+    <% if logged_in? -%>
       <%= render :partial => 'shared/side_bar' %>
-    <% end %>
+    <% end -%>
     <div style="clear:both;"></div>
   </div>
   <%= render :partial => 'shared/footer' %>

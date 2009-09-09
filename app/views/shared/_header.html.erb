@@ -5,11 +5,11 @@
 	</div>
 	<div id="menu">
 		<ul>
-		  <% if logged_in? %>
+		  <% if logged_in? -%>
 		    <li><%= link_to "Create New Project", new_project_path %></li>
 			  <li><%= link_to "View List of Researchers by Project", users_path %></li>
 			  <li><%= link_to "Log out", logout_path, { :title => "Log out" } %></li>
-			<% end %>
+			<% end -%>
 		</ul>
 	</div>
 </div>

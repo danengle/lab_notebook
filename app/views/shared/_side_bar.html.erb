@@ -6,33 +6,31 @@
 				<fieldset>
 				  <input type="text" id="q" name="q" value="" />
 				  <input type="submit" id="x" value="Search" />
-
       		<div id="result_list" style="display:none;"></div>
-          
 				</fieldset>
 			</form>
 		</li>
 		<li>
 			<h2><strong>My</strong> Projects</h2>
 			<ul>
-			  <% if current_user.projects.blank? %>
+			  <% if current_user.projects.blank? -%>
 			    <li>No Current Projects</li>
-			  <% else %>
-			    <% current_user.projects.each do |project| %>
+			  <% else -%>
+			    <% current_user.projects.each do |project| -%>
 			      <li><%= link_to project.title, project %></li>
-			    <% end %>
-				<% end %>
+			    <% end -%>
+				<% end -%>
 			</ul>
 		</li>
 		<li>
 			<h2><b>My</b> Pages</h2>
 			<ul>
-			  <% current_user.pages.last(10).each do |page| %>
+			  <% current_user.pages.last(10).each do |page| -%>
           <li><%= link_to page.page_date, page_path(page.page_date) %></li>
-        <% end %>
-        <% if current_user.pages.size > 10 %>
+        <% end -%>
+        <% if current_user.pages.size > 10 -%>
           <li><%= link_to "Full Archive", {:controller => 'pages', :action => 'index'} %></li>
-        <% end %>
+        <% end -%>
         <li><%= link_to "Download my notebook as pdf", notebook_path %></li>
 			</ul>
 		</li>

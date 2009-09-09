@@ -12,13 +12,13 @@
 <div class="post">
   <h2 class="title">Notes</h2>
   <ul>
-    <% @experiment.notes.each do |note| %>
+    <% @experiment.notes.each do |note| -%>
       <li id="note_<%= note.id %>">
         <h5>
           <%= note.created_at.strftime("%B %e, %Y") %>
-          <% if note.title? %>
+          <% if note.title? -%>
              - <%= note.title %>
-          <% end %>
+          <% end -%>
         </h5>
         <%= note.body %>
         <div class="meta">
@@ -27,32 +27,36 @@
           </p>
         </div>
       </li>
-    <% end %>
+    <% end -%>
   </ul>
 </div>
 <div class="post">
   <h2 class="title">Attachments</h2>
   <ul>
-    <% @experiment.attachments.each do |attachment| %>
-      <li>
-        <% if attachment.image? %>
-          <%= image_tag attachment.public_filename(:thumbnail) %>
-        <% else %>
-          <%= link_to attachment.filename, attachment.public_filename %>
-        <% end%>
-      </li>
-    <% end %>
+    <% if @experiment.attachments.blank? -%>
+      <li>You have no attachments.</li>
+    <% else -%>
+      <% @experiment.attachments.each do |attachment| -%>
+        <li>
+          <% if attachment.image? -%>
+            <%= image_tag attachment.public_filename(:thumbnail) %>
+          <% else -%>
+            <%= link_to attachment.filename, attachment.public_filename %>
+          <% end -%>
+        </li>
+      <% end -%>
+    <% end -%>
   </ul>
 </div>
 <div class="post">
   <h2 class="title">New Note</h2>
-  <% form_for([@project, @experiment,@note]) do |f| %>
+  <% form_for([@project, @experiment,@note]) do |f| -%>
     <%= f.error_messages %>
     <%= render :partial => 'notes/form', :locals => { :f => f } %>
     <p>
       <%= f.submit 'Create' %>
     </p>
-  <% end %>
+  <% end -%>
 </div>
 <div class="post">
   <h2 class="title">Add Attachment</h2>
@@ -62,5 +66,5 @@
     <p>
       <%= f.submit 'Save' %>
     </p>
-  <% end %>
+  <% end -%>
 </div>

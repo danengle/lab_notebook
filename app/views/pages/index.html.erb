@@ -2,9 +2,9 @@
   <h2 class="title">All Pages</h2>
   <div class="entry">
     <ul>
-      <% @pages.each do |page| %>
+      <% @pages.each do |page| -%>
         <li><%= link_to page.page_date, page_path(page.page_date) %>
-      <% end %>
+      <% end -%>
     </ul>
   </div>
 </div>

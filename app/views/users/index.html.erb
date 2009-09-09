@@ -1,18 +1,17 @@
-<% @projects.each do |project| %>
+<% @projects.each do |project| -%>
   <div class="post">
     <h2 class="title"><b>Project: </b><%= link_to project.title, project %></h2>
     <div class="entry">
       <ul>
-      <% project.users.each do |user| %>
+      <% project.users.each do |user| -%>
         <li>
           <%= user.login %>
           <% if user == current_user %>
             (thats you!)
-          <% end %>
+          <% end -%>
         </li>
-      <% end %>
+      <% end -%>
       </ul>
     </div>
-    
   </div>
-<% end %>
+<% end -%>

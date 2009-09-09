@@ -1,5 +1,5 @@
 <h2 class="activity">Activity for <%= @page.page_date %></h2>
-<% if current_user.projects.blank? %>
+<% if current_user.projects.blank? -%>
   <p>You have no activity because you haven't created any projects yet.  Get started by <%= link_to "creating a new project", new_project_path %>.</p>
-<% end %>
+<% end -%>
 <%= render :partial => 'page_items' %>

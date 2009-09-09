@@ -3,6 +3,6 @@
   <%= f.text_field :title %>
 </p>
 <p>
-  <%= f.label :body, "Body <span class=\"required\">(required)</span>: " %><br />
+  <%= f.label :body, "Body <span class=\"required\">(required)</span>: ", :for => "wysiwyg" %><br />
   <%= f.text_area :body, :id => "wysiwyg" %>
 </p>

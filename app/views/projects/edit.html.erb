@@ -1,11 +1,11 @@
 <h1>Editing project</h1>
 
-<% form_for(@project) do |f| %>
+<% form_for(@project) do |f| -%>
   <%= f.error_messages %>
   <%= render :partial => 'form', :locals => { :f => f } %>
   <p>
     <%= f.submit 'Update' %>
   </p>
-<% end %>
+<% end -%>
 
 <%= link_to 'Show', @project %>

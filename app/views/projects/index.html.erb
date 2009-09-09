@@ -1,6 +1,6 @@
 <h1>Listing projects</h1>
 
-<% @projects.each do |project| %>
+<% @projects.each do |project| -%>
   <div class="post">
     <h2 class="title"><%= project.title %></h2>
     <div class="entry">
@@ -8,15 +8,15 @@
     </div>
     <div class="meta">
       <p class="links">
-        <% if current_user.projects.include?(project) %>
+        <% if current_user.projects.include?(project) -%>
           <%= link_to "You are currently assigned to this project", "#", :class => 'more' %>
-        <% else %>
+        <% else -%>
           <%= link_to "Add this project to my notebook", add_me_project_path(project), :class => 'comments' %>
-        <% end %>
+        <% end -%>
       </p>
     </div>
   </div>
-<% end %>
+<% end -%>
 </table>
 
 <br />
